@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Subject</title>
+</head>
+<body>
+    <h2>Register New Subject</h2>
+    <form method="post" >
+        {% csrf_token %}
+        <label for="name">Subject Name:</label>
+        <input type="text" name="name" id="name" required><br><br>
+
+        <label for="course">Select Course:</label>
+        <select name="course" id="course" required>
+            <option value="">-- Select Course --</option>
+            {% for course in courses %}
+                <option value="{{ course.id }}">{{ course.name }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <button type="submit">Register Subject</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Periods</title>
+</head>
+<body>
+    <h1>Period List</h1>
+    <table>
+        <tr>
+            <th>Course</th>
+            <th>Day</th>
+            <th>Period Number</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Actions</th>
+        </tr>
+        {% for period in periods %}
+        <tr>
+            <td>{{ period.course.name }}</td>
+            <td>{{ period.day }}</td>
+            <td>{{ period.period_number }}</td>
+            <td>{{ period.start_time }}</td>
+            <td>{{ period.end_time }}</td>
+            <td>
+                <a href="/periodsupd/{{ period.id }}">Update</a>
+                <a href="/periodsdel/{{ period.id }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Course</title>
+</head>
+<body>
+    <h1>Register a Course</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label>Course Name:</label>
+        <input value="{{course.name}}" type="text" name="name" placeholder="Enter the Course Name">
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>

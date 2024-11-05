@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignments</title>
+</head>
+<body>
+    <h1>Staff Subject Assignments</h1>
+
+    <table>
+        <tr>
+            <th>Staff</th>
+            <th>Subject</th>
+            <th>Actions</th>
+        </tr>
+        {% for assignment in assignments %}
+        <tr>
+            <td>{{ assignment.staff.name }}</td>
+            <td>{{ assignment.subject.name }}</td>
+            <td>
+                <a href="/assignmentsupd/{{ assignment.id }}">Update</a>
+                <a href="/assignmentsdel/{{ assignment.id }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

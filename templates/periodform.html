@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Period</title>
+</head>
+<body>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <label for="course">Course:</label>
+        <select name="course" id="course">
+            {% for course in courses %}
+            <option value="{{ course.id }}" {% if period and period.course.id == course.id %}selected{% endif %}>{{ course.name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="subject">Subject:</label>
+        <select name="subject" id="subject">
+            <option value="">Select a subject</option>
+            {% for subject in subjects %}
+            <option value="{{ subject.id }}" {% if period and period.subject and period.subject.id == subject.id %}selected{% endif %}>{{ subject.name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="staff">Staff:</label>
+        <select name="staff" id="staff">
+            <option value="">Select a staff member</option>
+            {% for staff_member in staff_members %}
+            <option value="{{ staff_member.id }}" {% if period and period.staff and period.staff.id == staff_member.id %}selected{% endif %}>{{ staff_member.name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="day">Day:</label>
+        <input type="text" name="day" id="day" value="{% if period %}{{ period.day }}{% endif %}" placeholder="Enter the day">
+
+        <label for="period_number">Period Number:</label>
+        <input type="number" name="period_number" id="period_number" value="{% if period %}{{ period.period_number }}{% endif %}" placeholder="Enter period number">
+
+        <label for="start_time">Start Time:</label>
+        <input type="time" name="start_time" id="start_time" value="{% if period %}{{ period.start_time|date:'H:i' }}{% endif %}">
+
+        <label for="end_time">End Time:</label>
+        <input type="time" name="end_time" id="end_time" value="{% if period %}{{ period.end_time|date:'H:i' }}{% endif %}">
+
+        <button type="submit">Create</button>
+    </form>
+</body>
+</html>

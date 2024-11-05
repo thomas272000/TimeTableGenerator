@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generated Timetable</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+            text-align: center;
+        }
+        .course-table {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generated Timetable</h1>
+
+    {% for course, days in timetable.items %}
+    <h2>{{ course }}</h2>
+    <table class="course-table">
+        <tr>
+            <th>Day</th>
+            <th>Period Number</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Subject</th>
+            <th>Staff</th>
+        </tr>
+
+        {% for day, periods in days.items %}
+            {% for period in periods %}
+            <tr>
+                <td>{{ day }}</td>
+                <td>{{ period.period_number }}</td>
+                <td>{{ period.start_time }}</td>
+                <td>{{ period.end_time }}</td>
+
+                <td>
+                    {% if period.subject %}
+                        {{ period.subject.name }}
+                    {% else %}
+                        Unassigned
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if period.staff %}
+                        {{ period.staff.name }}
+                    {% else %}
+                        Unassigned
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        {% endfor %}
+    </table>
+    {% endfor %}
+</body>
+</html>
